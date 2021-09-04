@@ -4,6 +4,7 @@ import os
 import random
 import requests
 import json
+import csv
 
 TEXT_GEN_API_VAR = 'DEEP_AI_KEY'
 
@@ -232,11 +233,11 @@ ips = [
 
 # Randomize doctor name format
 # Read in first names and pick one
-with open('fns.csv') as fns:
+with open('bot/data/fns.csv') as fns:
 	reader2 = csv.reader(fns)
 	chosen_first=random.choice(list(fns))
 # Read in last names and pick one
-with open('lns.csv') as lns:
+with open('bot/data/lns.csv') as lns:
 	reader3=csv.reader(lns)
 	chosen_last=random.choice(list(lns))
 # Choose a name format
@@ -257,7 +258,7 @@ elif nf == 'DLF':
 stateName = random.choice(['TX','Texas','TEXAS','texas','tx','Tx'])
 
 # Read in zip code / city / county combos and select one to populate the form
-with open('TX_Zips.csv') as zf:
+with open('bot/data/TX_Zips.csv') as zf:
 	reader = csv.reader(zf)
 	chosen_row=random.choice(list(reader))
 	

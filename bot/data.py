@@ -255,6 +255,12 @@ elif nf == 'DLF':
 
 # Chose a state format
 stateName = random.choice(['TX','Texas','TEXAS','texas','tx','Tx'])
+
+# Read in zip code / city / county combos and select one to populate the form
+with open('TX_Zips.csv') as zf:
+	reader = csv.reader(zf)
+	chosen_row=random.choice(list(reader))
+	
 	
 def anonymous_form():
   while True:
@@ -263,10 +269,10 @@ def anonymous_form():
       'textarea-1': get_tip_body(),
       'text-1': random.choice(info_location),
       'text-6': dr,
-      'text-2': city,
+      'text-2': chosen_row[1],
       'text-3': stateName,
-      'text-4': str(random.randint(75001, 79942)),
-      'text-5': county,
+      'text-4': chosen_row[0],
+      'text-5': chosen_row[2],
       'hidden-1': random.choice(ips) + str(random.randint(0, 255)),
       'checkbox-1[]': 'yes' if random.choice([True, False]) else 'no',
     }
